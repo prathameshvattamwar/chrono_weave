@@ -1,0 +1,556 @@
+/* --- Global Styles & Variables --- */
+:root {
+    --bg-color: #f4f7f6;
+    --text-color: #333;
+    --primary-color: #00796b; /* Deep Teal */
+    --secondary-color: #ffc107; /* Amber/Gold */
+    --accent-color: #b2dfdb; /* Light Teal */
+    --card-bg: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --error-color: #d32f2f;
+    --border-color: #ddd;
+
+    /* Category Colors */
+    --color-personal: #4CAF50;
+    --color-career: #2196F3;
+    --color-travel: #FF9800;
+    --color-relationship: #E91E63;
+    --color-learning: #9C27B0;
+    --color-other: #795548;
+
+
+    --font-heading: 'Merriweather', serif;
+    --font-body: 'Montserrat', sans-serif;
+
+    --base-font-size: 16px;
+    --border-radius: 8px;
+    --transition-speed: 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: var(--base-font-size);
+    scroll-behavior: smooth; /* For smoother scrolling */
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+}
+
+.app-container {
+    max-width: 950px; /* Slightly wider */
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* --- Header --- */
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 1.5rem; /* More space */
+    position: relative; /* For positioning IO buttons */
+}
+
+header h1 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #555;
+    font-style: italic;
+    margin-bottom: 1rem; /* Space before IO buttons */
+}
+
+/* Import / Export Buttons */
+.io-controls {
+    /* position: absolute;
+    top: 10px;
+    right: 10px; */ /* Alternative: place below title */
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.io-controls button,
+.import-button-label {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border: 1px solid var(--primary-color);
+    background-color: transparent;
+    color: var(--primary-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    font-weight: 600;
+}
+.io-controls button:hover,
+.import-button-label:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+}
+
+
+/* --- Form Section --- */
+.event-form-section {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px var(--shadow-color);
+    margin-bottom: 3rem;
+}
+
+.event-form-section h2 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+#event-form .form-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+#event-form .form-row .form-group {
+    flex: 1; /* Each group takes equal space */
+    margin-bottom: 0; /* Remove bottom margin since row handles spacing */
+}
+
+#event-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+#event-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    font-size: 0.95rem;
+}
+
+#event-form input[type="text"],
+#event-form input[type="date"],
+#event-form textarea,
+#event-form select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-family: var(--font-body);
+    transition: border-color var(--transition-speed);
+    background-color: #fff; /* Ensure select bg is white */
+}
+
+#event-form input[type="text"]:focus,
+#event-form input[type="date"]:focus,
+#event-form textarea:focus,
+#event-form select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px var(--accent-color);
+}
+
+#event-form textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+#event-form button {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+    margin-right: 0.5rem;
+}
+
+#event-form button:hover {
+    background-color: #005a4f; /* Darker teal */
+    transform: translateY(-2px);
+}
+
+#event-form button#cancel-edit-button {
+    background-color: #aaa;
+}
+#event-form button#cancel-edit-button:hover {
+    background-color: #888;
+}
+
+/* --- Filter Section --- */
+.filter-section {
+    background-color: #e8f1f0; /* Lighter accent */
+    padding: 1.5rem 2rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 3rem;
+    border: 1px solid var(--accent-color);
+}
+
+.filter-section h2 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.filter-controls {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 1.5rem;
+    align-items: flex-end; /* Align items to bottom */
+}
+
+.filter-controls .form-group {
+    flex: 1; /* Allow fields to grow */
+    min-width: 150px; /* Prevent fields from becoming too small */
+    margin-bottom: 0; /* Remove default margin */
+}
+
+.filter-controls label {
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.filter-controls input[type="text"],
+.filter-controls input[type="date"] {
+     width: 100%;
+     padding: 0.6rem 0.8rem;
+     border: 1px solid var(--border-color);
+     border-radius: var(--border-radius);
+     font-size: 0.95rem;
+}
+.filter-controls input[type="text"]:focus,
+.filter-controls input[type="date"]:focus {
+     outline: none;
+     border-color: var(--primary-color);
+}
+
+
+.filter-controls button#clear-filters-button {
+    padding: 0.6rem 1.2rem;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+    height: fit-content; /* Align with input bottom */
+    margin-bottom: 1px; /* Fine-tune alignment */
+}
+.filter-controls button#clear-filters-button:hover {
+    background-color: #e0ac00; /* Darker amber */
+}
+
+
+/* --- Timeline Section --- */
+.timeline-section {
+    margin-top: 3rem;
+    position: relative; /* Needed for potential absolute positioning inside */
+}
+
+.timeline-section h2#timeline-title { /* Target specific h2 */
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 1.8rem;
+}
+
+#timeline-container {
+    position: relative;
+    padding: 2rem 0;
+}
+
+/* The Central Axis Line */
+.timeline-axis {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--accent-color), var(--primary-color));
+    border-radius: 2px;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+/* Individual Event Styling */
+.timeline-event {
+    position: relative;
+    width: calc(50% - 40px);
+    margin-bottom: 50px;
+    padding: 1.5rem;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px var(--shadow-color);
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.6s ease forwards;
+    border-left: 5px solid; /* Default border for category color */
+    border-color: var(--category-color, var(--primary-color)); /* Use CSS variable */
+}
+
+/* Apply Category Colors */
+.timeline-event[data-category="personal"] { --category-color: var(--color-personal); }
+.timeline-event[data-category="career"] { --category-color: var(--color-career); }
+.timeline-event[data-category="travel"] { --category-color: var(--color-travel); }
+.timeline-event[data-category="relationship"] { --category-color: var(--color-relationship); }
+.timeline-event[data-category="learning"] { --category-color: var(--color-learning); }
+.timeline-event[data-category="other"] { --category-color: var(--color-other); }
+
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.timeline-event:nth-child(odd) { left: 0; }
+.timeline-event:nth-child(even) { left: calc(50% + 40px); }
+
+
+/* Connector Dot on the Axis */
+.timeline-event::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    width: 16px;
+    height: 16px;
+    /* Use category color for the dot background */
+    background-color: var(--category-color, var(--secondary-color));
+    border: 3px solid var(--bg-color); /* Border against background */
+    box-shadow: 0 0 0 2px var(--category-color, var(--primary-color)); /* Outer ring */
+    border-radius: 50%;
+    z-index: 3;
+}
+
+.timeline-event:nth-child(odd)::before { right: -48px; }
+.timeline-event:nth-child(even)::before { left: -48px; }
+
+
+/* Connecting Line from Dot to Card */
+.timeline-event::after {
+    content: '';
+    position: absolute;
+    top: 27px;
+    width: 40px;
+    height: 2px;
+    /* Use category color for the line */
+    background-color: var(--category-color, var(--accent-color));
+    z-index: 1;
+}
+
+.timeline-event:nth-child(odd)::after { right: -40px; }
+.timeline-event:nth-child(even)::after { left: -40px; }
+
+
+/* Content inside the event card */
+.timeline-event .event-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    gap: 0.7rem;
+}
+.timeline-event .event-icon {
+    font-size: 1.5rem; /* Adjust icon size */
+    line-height: 1;
+}
+
+.timeline-event h3 {
+    font-family: var(--font-heading);
+    color: var(--text-color); /* Use text color, border shows category */
+    font-size: 1.3rem;
+    margin-bottom: 0; /* Removed margin as header handles spacing */
+    flex-grow: 1; /* Allow title to take remaining space */
+}
+
+.timeline-event .event-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+.timeline-event .event-meta .event-date {
+    color: var(--category-color, var(--primary-color)); /* Color date */
+    font-weight: 700;
+}
+.timeline-event .event-meta .event-category-tag {
+    display: inline-block;
+    font-size: 0.8rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+    background-color: var(--category-color, var(--primary-color));
+    color: white;
+    margin-left: 0.8rem;
+    text-transform: capitalize;
+}
+
+.timeline-event .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    color: #444; /* Slightly darker description */
+}
+
+/* Edit/Delete Buttons */
+.event-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0.3rem 0.6rem;
+    margin-right: 0.5rem;
+    border-radius: 4px;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.event-actions .edit-btn { color: var(--primary-color); }
+.event-actions .edit-btn:hover { background-color: var(--accent-color); }
+.event-actions .delete-btn { color: var(--error-color); }
+.event-actions .delete-btn:hover { background-color: #fddede; }
+
+/* --- Helper Classes --- */
+.hidden { display: none !important; }
+
+#empty-timeline-message {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    padding: 2rem;
+    font-size: 1.1rem;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .timeline-axis {
+        left: 20px;
+        transform: translateX(0);
+    }
+
+    .timeline-event {
+        width: calc(100% - 40px); /* Full width minus left margin */
+        left: 40px !important; /* Force all cards to the right */
+        margin-bottom: 30px;
+    }
+
+    .timeline-event:nth-child(odd),
+    .timeline-event:nth-child(even) {
+        left: 40px; /* Override alternating positioning */
+    }
+
+    /* Adjust dot positioning for left-aligned axis */
+    .timeline-event::before {
+        left: -28px;
+        top: 15px;
+    }
+    .timeline-event:nth-child(odd)::before,
+    .timeline-event:nth-child(even)::before {
+        left: -28px;
+        right: auto;
+    }
+
+    /* Adjust connector line positioning */
+     .timeline-event::after {
+        left: -20px;
+        width: 20px;
+        top: 22px;
+    }
+     .timeline-event:nth-child(odd)::after,
+     .timeline-event:nth-child(even)::after {
+        left: -20px;
+        right: auto;
+    }
+
+
+    header h1 { font-size: 2.2rem; }
+    .event-form-section h2,
+    .timeline-section h2 { font-size: 1.5rem; }
+    .filter-section h2 { font-size: 1.3rem; }
+
+    /* Stack form rows vertically */
+    #event-form .form-row {
+        flex-direction: column;
+        gap: 1.5rem; /* Keep gap */
+    }
+
+    .filter-controls {
+        gap: 1rem; /* Reduce gap */
+    }
+     .filter-controls .form-group {
+        min-width: 100%; /* Full width on smaller screens */
+    }
+     .filter-controls button#clear-filters-button {
+        width: 100%; /* Full width */
+        margin-top: 0.5rem; /* Add some space */
+    }
+    .io-controls {
+        /* position: static; */ /* Remove absolute positioning */
+        margin-top: 1.5rem;
+        justify-content: center;
+    }
+
+}
+
+@media (max-width: 480px) {
+    html { font-size: 15px; }
+    header h1 { font-size: 1.8rem; }
+    .event-form-section { padding: 1.5rem; }
+    #event-form button {
+        width: 100%;
+        margin-bottom: 0.5rem;
+        margin-right: 0;
+    }
+    #event-form button#cancel-edit-button { margin-top: 0.5rem; }
+
+    /* Further stack IO buttons */
+     .io-controls {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+     }
+    .io-controls button, .import-button-label {
+        width: 80%;
+        text-align: center;
+    }
+}

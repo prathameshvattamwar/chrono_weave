@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChronoWeave - Enhanced Timeline</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>ChronoWeave</h1>
+            <p>Weave the threads of your personal timeline.</p>
+             <!-- Import / Export -->
+             <div class="io-controls">
+                 <button id="export-button" title="Export Timeline as JSON">Export Data</button>
+                 <label for="import-file" class="import-button-label" title="Import Timeline from JSON">
+                     Import Data
+                 </label>
+                 <input type="file" id="import-file" accept=".json" style="display: none;">
+             </div>
+        </header>
+
+        <section class="event-form-section">
+            <h2>Add or Update a Moment</h2>
+            <form id="event-form">
+                <input type="hidden" id="event-id"> <!-- For editing -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="event-title">Title:</label>
+                        <input type="text" id="event-title" required placeholder="e.g., Graduated University">
+                    </div>
+                    <div class="form-group">
+                        <label for="event-date">Date:</label>
+                        <input type="date" id="event-date" required>
+                    </div>
+                </div>
+                 <div class="form-row">
+                    <div class="form-group">
+                        <label for="event-category">Category:</label>
+                        <select id="event-category">
+                            <option value="personal" data-color="#4CAF50">Personal Milestone</option>
+                            <option value="career" data-color="#2196F3">Career/Education</option>
+                            <option value="travel" data-color="#FF9800">Travel/Adventure</option>
+                            <option value="relationship" data-color="#E91E63">Relationship</option>
+                            <option value="learning" data-color="#9C27B0">Learning/Skill</option>
+                            <option value="other" data-color="#795548">Other</option>
+                        </select>
+                    </div>
+                     <div class="form-group">
+                        <label for="event-icon">Icon:</label>
+                        <select id="event-icon">
+                            <option value="🌟">🌟 Star</option>
+                            <option value="🎓">🎓 Graduation Cap</option>
+                            <option value="💼">💼 Briefcase</option>
+                            <option value="✈️">✈️ Airplane</option>
+                            <option value="❤️">❤️ Heart</option>
+                            <option value="💡">💡 Lightbulb</option>
+                            <option value="🎉">🎉 Party Popper</option>
+                            <option value="📍">📍 Pin</option>
+                            <option value="📅">📅 Calendar</option>
+                            <!-- Add more emojis as needed -->
+                        </select>
+                    </div>
+                 </div>
+                <div class="form-group">
+                    <label for="event-description">Description:</label>
+                    <textarea id="event-description" rows="3" placeholder="Add a brief note..."></textarea>
+                </div>
+                <button type="submit" id="submit-button">Add Moment</button>
+                <button type="button" id="cancel-edit-button" class="hidden">Cancel Edit</button>
+            </form>
+        </section>
+
+         <section class="filter-section">
+            <h2>Filter Timeline</h2>
+            <div class="filter-controls">
+                <div class="form-group">
+                    <label for="filter-keyword">Keyword:</label>
+                    <input type="text" id="filter-keyword" placeholder="Search title/description...">
+                </div>
+                <div class="form-group">
+                    <label for="filter-start-date">Start Date:</label>
+                    <input type="date" id="filter-start-date">
+                </div>
+                 <div class="form-group">
+                    <label for="filter-end-date">End Date:</label>
+                    <input type="date" id="filter-end-date">
+                </div>
+                <button id="clear-filters-button">Clear Filters</button>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <h2 id="timeline-title">Your Timeline</h2>
+            <div id="timeline-container">
+                <div class="timeline-axis"></div>
+                 <p id="empty-timeline-message" class="hidden">Your timeline is empty or no events match the current filters.</p>
+                <!-- Timeline events will be injected here by JavaScript -->
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>ChronoWeave Enhanced © 2023</p>
+    </footer>
+
+    <!-- Link JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
